@@ -119,3 +119,51 @@ struct __attribute__((__packed__)) mystruct {
 ```
 
 We expect this structure to require 5 bytes, however, this may not be the case on all systems. By adding the packed attribute, we can ensure the compiler doesn't add any additional padding memory.
+
+## Pointers
+Very similar to C++.
+```c
+int x = 3;
+int *pX = &x; // & Address, *pointer/dereference operator
+```
+
+## Dynamic Memory Allocation
+
+Core concept is we want to allocate memory at runtime instead of compile time. Todo this, we use the
+```c
+malloc();
+```
+
+function. Remember to use
+```c
+free();
+```
+on the created object and set the object to NULL.
+
+## Static Memory Allocation
+
+Static variables retain their value between function calls and are initialized only once when the program starts like global variables but unlike global variable have limited scope.
+
+```c
+static int test = 0;
+```
+
+## Double pointers
+
+Double pointers hold the address to/of a pointer. The main usecase presented is when you need to perform allocation/resizing of dynamic memory in a function in which case you would want to pass in a double pointer to the memory.
+
+```c
+int resize(int **p);
+```
+
+## Testing for Memory Leaks
+
+Memory leaks occur when we don't free memory that we allocate. To do this, we need to compile our code with debug symbols enabled. Example:
+```bash
+gcc code.c -g
+```
+And to test the code
+```bash
+valgrind --leak-check=full ./a.out
+```
+
