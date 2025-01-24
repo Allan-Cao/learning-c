@@ -159,11 +159,11 @@ int resize(int **p);
 ## Testing for Memory Leaks
 
 Memory leaks occur when we don't free memory that we allocate. To do this, we need to compile our code with debug symbols enabled. Example:
-```bash
+```console
 gcc code.c -g
 ```
 And to test the code
-```bash
+```console
 valgrind --leak-check=full ./a.out
 ```
 
